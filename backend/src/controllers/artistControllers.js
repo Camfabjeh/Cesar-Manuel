@@ -38,7 +38,7 @@ const edit = (req, res) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else {
-        res.sendStatus(204);
+        res.send("artiste mis·e à jour").status(204);
       }
     })
     .catch((err) => {
@@ -68,7 +68,7 @@ const destroy = (req, res) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else {
-        res.sendStatus(204);
+        res.send("artiste supprimé·e").status(204);
       }
     })
     .catch((err) => {

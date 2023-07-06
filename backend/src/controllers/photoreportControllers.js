@@ -1,7 +1,7 @@
 const models = require("../models");
 
 const browse = (req, res) => {
-  models.photoreport
+  models.photoReport
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -13,7 +13,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.photoreport
+  models.photoReport
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -32,7 +32,7 @@ const edit = (req, res) => {
   const photoreport = req.body;
   photoreport.id = parseInt(req.params.id, 10);
 
-  models.photoreport
+  models.photoReport
     .update(photoreport)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -50,7 +50,7 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const photoreport = req.body;
 
-  models.photoreport
+  models.photoReport
     .insert(photoreport)
     .then(([result]) => {
       res.location(`/photoreports/${result.insertId}`).sendStatus(201);
@@ -62,7 +62,7 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.photoreport
+  models.photoReport
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {

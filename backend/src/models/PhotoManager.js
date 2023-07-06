@@ -7,16 +7,16 @@ class PhotoManager extends AbstractManager {
 
   insert(photo) {
     return this.database.query(
-      `insert into ${this.table} (photo_report_id, name, src, alt) values (?, ?, ?, ?)`,
-      [photo.photo_report_id, photo.name, photo.src, photo.alt]
+      `insert into ${this.table} (photo_report_id, src, alt) values (?, ?, ?)`,
+      [photo.photo_report_id, photo.src, photo.alt]
     );
   }
 
   update(photo) {
-    return this.database.query(
-      `update ${this.table} set photo_report_id = ?, name = ?, src = ?, alt = ? where id = ?`,
-      [photo.photo_report_id, photo.name, photo.src, photo.alt, photo.id]
-    );
+    return this.database.query(`update ${this.table} set ? where id = ?`, [
+      photo,
+      photo.id,
+    ]);
   }
 
   delete(id) {

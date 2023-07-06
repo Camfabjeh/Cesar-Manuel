@@ -17,16 +17,16 @@ class ArtistManager extends AbstractManager {
 
   insert(artist) {
     return this.database.query(
-      `insert into ${this.table} (name, website) values (?, ?)`,
-      [artist.name, artist.website, artist.id]
+      `insert into ${this.table} (artist_name, website) values (?, ?)`,
+      [artist.artist_name, artist.website]
     );
   }
 
   update(artist) {
-    return this.database.query(
-      `update ${this.table} set name = ?, website = ?, where id = ?`,
-      [artist.name, artist.website, artist.id]
-    );
+    return this.database.query(`update ${this.table} set ? where id = ?`, [
+      artist,
+      artist.id,
+    ]);
   }
 
   delete(id) {

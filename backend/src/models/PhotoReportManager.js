@@ -7,11 +7,11 @@ class PhotoReportManager extends AbstractManager {
 
   insert(photoReport) {
     return this.database.query(
-      `insert into ${this.table} (name, date, description, place, artist_id) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (report_name, report_date, report_description, place, artist_id) values (?, ?, ?, ?, ?)`,
       [
-        photoReport.name,
-        photoReport.date,
-        photoReport.description,
+        photoReport.report_name,
+        photoReport.report_date,
+        photoReport.report_description,
         photoReport.place,
         photoReport.artist_id,
       ]

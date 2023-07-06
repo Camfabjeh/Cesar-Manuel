@@ -26,7 +26,7 @@ router.put("/photos/:id", photoControllers.edit);
 router.post("/photos", photoControllers.add);
 router.delete("/photos/:id", photoControllers.destroy);
 
-const photoreportControllers = require("./controllers/photoreportControllers");
+const photoreportControllers = require("./controllers/photoReportControllers");
 
 router.get("/photoreports", photoreportControllers.browse);
 router.get("/photoreports/:id", photoreportControllers.read);
