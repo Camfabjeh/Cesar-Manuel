@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NavBarUser from "../components/NavBarUser";
+import UserNavBar from "../components/UserNavBar";
 
 function UserLayout() {
   return (
     <div>
-      <NavBarUser />
+      <UserNavBar />
       <Outlet />
     </div>
   );

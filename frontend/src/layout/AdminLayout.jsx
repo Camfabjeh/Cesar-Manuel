@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NavBarAdmin from "../components/NavBarAdmin";
+import AdminNavBar from "../components/AdminNavBar";
 
 function AdminLayout() {
   return (
     <div>
-      <NavBarAdmin />
+      <AdminNavBar />
       <Outlet />
     </div>
   );

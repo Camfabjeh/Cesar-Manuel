@@ -17,16 +17,16 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="" element={<HomePage />} />
         <Route path="/" element={<UserLayout />}>
-          <Route path="" element={<HomePage />} />
           <Route path="/listereportages" element={<PhotoReportsList />} />
           <Route path="/reportage/:id" element={<PhotoReport />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="" element={<Login />} />
-          <Route path="/reportages" element={<PhotoReportsAdmin />} />
-          <Route path="/artistes" element={<ArtistsAdmin />} />
-          <Route path="/photos" element={<PhotosAdmin />} />
+          <Route path="/admin/reportages" element={<PhotoReportsAdmin />} />
+          <Route path="/admin/artistes" element={<ArtistsAdmin />} />
+          <Route path="/admin/photos" element={<PhotosAdmin />} />
         </Route>
       </Routes>
     </Router>
