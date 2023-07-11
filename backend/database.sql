@@ -2,6 +2,12 @@ DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS photo_report;
 DROP TABLE IF EXISTS artist;
 
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user (
+  login varchar(255),
+  password varchar(255)
+)
 
 CREATE TABLE artist (
   id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
