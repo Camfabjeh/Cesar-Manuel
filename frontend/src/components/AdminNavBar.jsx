@@ -6,8 +6,8 @@ import BACKOFFICEDECO from "../assets/backoffice/BACK_OFFICE_DECONNECT.png";
 function NavBarAdmin() {
   return (
     <div className="h-screen">
-      <div className="flex justify-between bg-black w-60 h-full text-lightgrey pl-5 flex-col items-left">
-        <div className="pb-8">
+      <div className="flex justify-between bg-black w-60 h-full text-lightgrey pl-5 flex-col items-left shadow-lg">
+        <div className="pb-8 pt-8">
           <Link to="/">
             <img
               src={BACKOFFICELOGO}
@@ -15,27 +15,22 @@ function NavBarAdmin() {
             />
           </Link>
         </div>
-        <div className="pb-12 flex">
-          <Link className="pt-2 font-title" to="/admin/reportages">
+        <div className="pb-12 flex flex-col items-center gap-4">
+          <Link className="pt-6 font-text font-bold" to="/admin/reportages">
             Reportages
           </Link>
-        </div>
-        <div className="pb-12 flex">
-          <Link className="pt-2 font-title" to="/admin/artistes">
+          <Link className="pt-6 font-text font-bold" to="/admin/artistes">
             Artistes
           </Link>
-        </div>
-        <div className="pb-12 flex">
-          <Link className="pt-2 font-title" to="/admin/photos">
+          <Link className="pt-6 font-text font-bold" to="/admin/photos">
             Photos
           </Link>
         </div>
-        <Link to="/" className="font-title">
+        <Link to="/" className="pb-8">
           <img
             src={BACKOFFICEDECO}
             alt="bouton de déconnexion administratrice"
           />
-          Déconnexion
         </Link>
       </div>
     </div>
