@@ -91,9 +91,9 @@ function PhotoReportsAdmin() {
       theme: "light",
     });
 
-  const updatePhotoReport = async (form) => {
+  const updatePhotoReport = async () => {
     try {
-      await connexion.put(`/photoreports/${photoReports.id}`, form);
+      await connexion.put(`/photoreports/${photoReport.id}`, photoReport);
       getPhotoReports();
       notifyUpdate();
     } catch (error) {

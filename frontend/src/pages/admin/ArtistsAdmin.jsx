@@ -61,9 +61,9 @@ function ArtistsAdmin() {
       theme: "light",
     });
 
-  const postArtist = async (form) => {
+  const postArtist = async () => {
     try {
-      const art = await connexion.postFile("/artists", form);
+      const art = await connexion.post("/artists", artist);
       setArtist(art);
       setArtist(artistModel);
       notifyAdd();
@@ -85,9 +85,9 @@ function ArtistsAdmin() {
       theme: "light",
     });
 
-  const updateArtist = async (form) => {
+  const updateArtist = async () => {
     try {
-      await connexion.putFile(`/photos/${artists.id}`, form);
+      await connexion.put(`/artists/${artist.id}`, artist);
       getArtists();
       notifyUpdate();
     } catch (error) {

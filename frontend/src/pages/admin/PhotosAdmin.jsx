@@ -90,7 +90,7 @@ function PhotosAdmin() {
 
   const updatePhoto = async (form) => {
     try {
-      await connexion.putFile(`/photos/${photos.id}`, form);
+      await connexion.putFile(`/photos/${photo.id}`, form);
       getPhotos();
       notifyUpdate();
     } catch (error) {
@@ -168,7 +168,7 @@ function PhotosAdmin() {
                 <option value="">photo</option>
                 {photos.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.alt}
+                    {p.src}
                   </option>
                 ))}
               </select>
@@ -182,6 +182,7 @@ function PhotosAdmin() {
                 className="border-0 h-7 bg-lightgrey shadow-md"
                 name="photo_report_name"
                 type="text"
+                required
                 onChange={(event) =>
                   handlePhoto(event.target.name, +event.target.value)
                 }
@@ -189,8 +190,8 @@ function PhotosAdmin() {
               >
                 <option value="">choisissez le reportage photo concerné</option>
                 {photoReports.map((pr) => (
-                  <option key={pr.id} value={pr.id}>
-                    {pr.name}
+                  <option key={pr.id} value={pr.report_name}>
+                    {pr.report_name}
                   </option>
                 ))}
               </select>
@@ -201,7 +202,7 @@ function PhotosAdmin() {
               <label className="flex flex-col font-semibold pb-5">
                 fichier photo
                 <input
-                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
+                  className="border-0 h-7 bg-lightgrey shadow-md font-normal form-control"
                   type="file"
                   required
                   placeholder="fichier photo"
@@ -232,7 +233,7 @@ function PhotosAdmin() {
                   placeholder=""
                   minLength={6}
                   maxLength={50}
-                  name="lieu"
+                  name="texte alternatif"
                   onChange={(event) =>
                     handlePhoto(event.target.name, event.target.value)
                   }

@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 
 const router = express.Router();
 
@@ -22,7 +23,27 @@ const photoControllers = require("./controllers/photoControllers");
 
 router.get("/photos", photoControllers.browse);
 router.get("/photos/:id", photoControllers.read);
-router.put("/photos/:id", photoControllers.edit);
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "public/assets/images");
+  },
+  filename(req, file, cb) {
+    const fileArray = file.originalname.split(".");
+    const extension = fileArray.pop();
+    const fileName = fileArray.join("-").split(" ").join("-");
+    cb(null, `${fileName}_${Date.now()}.${extension}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: "2MB" },
+});
+
+router.put("/photos/:id", upload.single("image"), photoControllers.edit);
+router.post("/works", upload.single("image"), photoControllers.add);
+router.delete("/works/:id", upload.single("image"));
 router.post("/photos", photoControllers.add);
 router.delete("/photos/:id", photoControllers.destroy);
 
