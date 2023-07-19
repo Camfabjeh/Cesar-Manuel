@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import connexion from "../../services/connexion";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,6 @@ function PhotoReportsAdmin() {
   const [photoReport, setPhotoReport] = useState(photoReportModel);
   const [artists, setArtists] = useState([]);
   const [photoReports, setPhotoReports] = useState([]);
-  const image = useRef();
 
   const refreshPhotoReport = (id) => {
     if (id === "") {
@@ -50,7 +49,7 @@ function PhotoReportsAdmin() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "light",
+      theme: "dark",
     });
 
   const notifyAdd = () =>
@@ -68,9 +67,9 @@ function PhotoReportsAdmin() {
       }
     );
 
-  const postPhotoReport = async (form) => {
+  const postPhotoReport = async () => {
     try {
-      const pr = await connexion.postFile("/photoreports", form);
+      const pr = await connexion.post("/photoreports", photoReport);
       setPhotoReport(pr);
       setPhotoReport(photoReportModel);
       notifyAdd();
@@ -92,9 +91,9 @@ function PhotoReportsAdmin() {
       theme: "light",
     });
 
-  const updatePhotoReport = async (form) => {
+  const updatePhotoReport = async () => {
     try {
-      await connexion.putFile(`/photoreports/${photoReports.id}`, form);
+      await connexion.put(`/photoreports/${photoReport.id}`, photoReport);
       getPhotoReports();
       notifyUpdate();
     } catch (error) {
@@ -106,7 +105,6 @@ function PhotoReportsAdmin() {
   const managePhotoReport = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", image.current.files[0]);
     formData.append("json", JSON.stringify(photoReport));
     if (photoReport.id) {
       updatePhotoReport(formData);
@@ -199,14 +197,14 @@ function PhotoReportsAdmin() {
             </label>
             <div className="pt-3">
               <label className="flex flex-col font-semibold">
-                date du reportage
+                année du reportage
                 <input
                   className="border-0 h-7 bg-lightgrey shadow-md font-normal"
-                  type="text"
+                  type="number"
                   required
-                  placeholder=""
-                  minLength={5}
-                  maxLength={255}
+                  placeholder="noter uniquement l'année"
+                  min="2000"
+                  max="2025"
                   name="report_date"
                   onChange={(event) =>
                     handlePhotoReport(event.target.name, event.target.value)

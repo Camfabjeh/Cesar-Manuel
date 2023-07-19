@@ -23,10 +23,10 @@ class ArtistManager extends AbstractManager {
   }
 
   update(artist) {
-    return this.database.query(`update ${this.table} set ? where id = ?`, [
-      artist,
-      artist.id,
-    ]);
+    return this.database.query(
+      `update ${this.table} set artist_name = ?, website = ? where id = ?`,
+      [artist.artist_name, artist.website, artist.id]
+    );
   }
 
   delete(id) {

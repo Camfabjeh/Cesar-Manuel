@@ -19,10 +19,17 @@ class PhotoReportManager extends AbstractManager {
   }
 
   update(photoReport) {
-    return this.database.query(`update ${this.table} set ? where id = ?`, [
-      photoReport,
-      photoReport.id,
-    ]);
+    return this.database.query(
+      `update ${this.table} set report_name = ?, report_date = ?, report_description = ?, place = ?, artist_id = ? where id = ?`,
+      [
+        photoReport.report_name,
+        photoReport.report_date,
+        photoReport.report_description,
+        photoReport.place,
+        photoReport.artist_id,
+        photoReport.id,
+      ]
+    );
   }
 
   delete(id) {
