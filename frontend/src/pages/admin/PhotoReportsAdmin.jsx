@@ -155,15 +155,12 @@ function PhotoReportsAdmin() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="w-full bg-white">
       <h2 className="text-3xl font-bold font-text p-12 text-right">
         administration des reportages photo
       </h2>
-      <div className="flex pl-10">
-        <form
-          className="flex gap-20"
-          onSubmit={(event) => postPhotoReport(event)}
-        >
+      <div className="pl-10 font-title">
+        <form className="gap-20" onSubmit={(event) => postPhotoReport(event)}>
           <div className="w-5/12">
             <div>
               <h1 className="font-bold pb-2">
@@ -172,13 +169,10 @@ function PhotoReportsAdmin() {
               <label className="flex flex-col font-semibold pb-5">
                 <select
                   onChange={(e) => refreshPhotoReport(e.target.value)}
-                  value=""
+                  value={photoReport.id}
                   className="border-0 h-7 bg-lightgrey shadow-md"
                 >
-                  <option value="">
-                    Sélectionnez le nom du reportage photo à modifier ou
-                    supprimer
-                  </option>
+                  <option value="">reportage</option>
                   {photoReports.map((pr) => (
                     <option key={pr.id} value={pr.id}>
                       {pr.report_name}
@@ -190,12 +184,12 @@ function PhotoReportsAdmin() {
                 Enregistrement d'un nouveau reportage :
               </h1>
               <label className="flex flex-col font-semibold">
-                Nom du reportage
+                nom du reportage
                 <input
-                  className="border-0 h-7 bg-lightgrey shadow-md"
+                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
                   type="text"
                   required
-                  placeholder="Tapez ici le nom du reportage photo"
+                  placeholder=""
                   minLength={5}
                   maxLength={12}
                   name="name"
@@ -208,12 +202,12 @@ function PhotoReportsAdmin() {
             </div>
             <div className="pt-3">
               <label className="flex flex-col font-semibold">
-                Date
+                date du reportage
                 <input
-                  className="border-0 h-7 bg-lightgrey shadow-md"
+                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
                   type="text"
                   required
-                  placeholder="Date du reportage"
+                  placeholder=""
                   minLength={5}
                   maxLength={255}
                   name="date"
@@ -226,11 +220,11 @@ function PhotoReportsAdmin() {
             </div>
             <div className="pt-3">
               <label className="flex flex-col font-semibold">
-                Description
+                description
                 <textarea
                   className="border-0 font-normal bg-lightgrey shadow-md"
                   required
-                  placeholder="Description"
+                  placeholder=""
                   minLength={50}
                   name="description"
                   onChange={(event) =>
@@ -242,12 +236,12 @@ function PhotoReportsAdmin() {
             </div>
             <div className="pt-3">
               <label className="flex flex-col font-semibold">
-                Lieu
+                lieu
                 <input
-                  className="border-0 h-7 bg-lightgrey shadow-md"
+                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
                   type="text"
                   required
-                  placeholder="Lieu"
+                  placeholder=""
                   minLength={6}
                   maxLength={50}
                   name="lieu"
@@ -260,7 +254,7 @@ function PhotoReportsAdmin() {
             </div>
             <div className="pt-3">
               <label className="flex flex-col font-semibold pb-5">
-                Artiste
+                artiste
                 <select
                   className="border-0 h-7 bg-lightgrey shadow-md"
                   name="artist_id"
@@ -271,7 +265,7 @@ function PhotoReportsAdmin() {
                   value=""
                 >
                   <option value="">
-                    Choisissez l'artiste à associer au reportage photo
+                    choisissez l'artiste à associer au reportage photo
                   </option>
                   {artists.map((art) => (
                     <option key={art.id} value={art.id}>
@@ -296,7 +290,9 @@ function PhotoReportsAdmin() {
               theme="light"
               className="font-text"
             />
-            <div className="flex justify-end pt-60 pb-5 pr-10 gap-10">
+          </div>
+          <div className="pt-6 pb-5 pr-10 gap-4">
+            {!photoReport.id && (
               <button
                 type="submit"
                 className="bg-black text-yellow font-bold py-2 px-4 font-text rounded shadow-md"
@@ -304,23 +300,29 @@ function PhotoReportsAdmin() {
               >
                 Ajouter
               </button>
-              <button
-                type="button"
-                className="bg-black text-yellow font-bold py-2 px-4 font-text rounded shadow-md"
-                onClick={(e) => managePhotoReport(e)}
-              >
-                Mettre à jour
-              </button>
-              <button
-                type="button"
-                className="bg-black text-yellow font-bold py-2 px-4 font-text rounded shadow-md"
-                onClick={(e) => deletePhotoReport(e)}
-              >
-                Supprimer
-              </button>
-            </div>
+            )}
           </div>
         </form>
+        <div className="pt-6 pb-5 pr-10 flex gap-4">
+          {photoReport.id && (
+            <button
+              type="button"
+              className="bg-black text-yellow font-bold py-2 px-4 font-text rounded shadow-md"
+              onClick={(e) => managePhotoReport(e)}
+            >
+              Mettre à jour
+            </button>
+          )}
+          {photoReport.id && (
+            <button
+              type="button"
+              className="bg-yellow text-black font-bold py-2 px-4 font-text rounded shadow-md"
+              onClick={(e) => deletePhotoReport(e)}
+            >
+              Supprimer
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

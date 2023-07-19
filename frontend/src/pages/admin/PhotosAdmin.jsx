@@ -4,41 +4,40 @@ import connexion from "../../services/connexion";
 import "react-toastify/dist/ReactToastify.css";
 
 function PhotosAdmin() {
-  const photoReportModel = {
+  const photoModel = {
     id: null,
-    report_name: "",
-    report_date: "",
-    report_description: "",
-    place: "",
-    artist_id: "",
+    photo_report_id: "",
+    src: "",
+    alt: "",
   };
-  const [photoReport, setPhotoReport] = useState(photoReportModel);
-  const [artists, setArtists] = useState([]);
+
+  const [photo, setPhoto] = useState(photoModel);
   const [photoReports, setPhotoReports] = useState([]);
+  const [photos, setPhotos] = useState([]);
   const image = useRef();
 
-  const refreshPhotoReport = (id) => {
+  const refreshPhoto = (id) => {
     if (id === "") {
-      setPhotoReport(photoReportModel);
+      setPhoto(photoModel);
     } else {
-      const find = photoReports.find((pr) => pr.id === +id);
-      setPhotoReport(find);
+      const find = photos.find((pr) => pr.id === +id);
+      setPhoto(find);
     }
   };
 
-  const getPhotoReports = async () => {
-    const pr = await connexion.get("/photoreports");
+  const getPhotos = async () => {
+    const pr = await connexion.get("/photos");
     try {
       if (pr) {
-        setPhotoReports(pr);
+        setPhotos(pr);
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handlePhotoReport = (name, value) => {
-    setPhotoReport({ ...photoReport, [name]: value });
+  const handlePhoto = (name, value) => {
+    setPhoto({ ...photo, [name]: value });
   };
 
   const notifyWrong = () =>
@@ -54,34 +53,7 @@ function PhotosAdmin() {
     });
 
   const notifyAdd = () =>
-    toast(
-      "Le reportage photo a été correctement ajouté à la base de données.",
-      {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }
-    );
-
-  const postPhotoReport = async (form) => {
-    try {
-      const pr = await connexion.postFile("/photoreports", form);
-      setPhotoReport(pr);
-      setPhotoReport(photoReportModel);
-      notifyAdd();
-      getPhotoReports();
-    } catch (error) {
-      notifyWrong();
-      console.error(error);
-    }
-  };
-  const notifyUpdate = () =>
-    toast("Le reportage a été correctement mis à jour.", {
+    toast("La photo a été correctement ajoutée à la base de données.", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -92,10 +64,34 @@ function PhotosAdmin() {
       theme: "light",
     });
 
-  const updatePhotoReport = async (form) => {
+  const postPhoto = async (form) => {
     try {
-      await connexion.putFile(`/photoreports/${photoReports.id}`, form);
-      getPhotoReports();
+      const pr = await connexion.postFile("/photos", form);
+      setPhoto(pr);
+      setPhoto(photoModel);
+      notifyAdd();
+      getPhotos();
+    } catch (error) {
+      notifyWrong();
+      console.error(error);
+    }
+  };
+  const notifyUpdate = () =>
+    toast("La photo a été correctement mise à jour.", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const updatePhoto = async (form) => {
+    try {
+      await connexion.putFile(`/photos/${photos.id}`, form);
+      getPhotos();
       notifyUpdate();
     } catch (error) {
       notifyWrong();
@@ -103,20 +99,20 @@ function PhotosAdmin() {
     }
   };
 
-  const managePhotoReport = async (e) => {
+  const managePhoto = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image.current.files[0]);
-    formData.append("json", JSON.stringify(photoReport));
-    if (photoReport.id) {
-      updatePhotoReport(formData);
+    formData.append("json", JSON.stringify(photo));
+    if (photo.id) {
+      updatePhoto(formData);
     } else {
-      postPhotoReport(formData);
+      postPhoto(formData);
     }
   };
 
   const notifyDelete = () =>
-    toast("Le reportage a bien été supprimé de la base de données.", {
+    toast("La photo a bien été supprimée de la base de données.", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -127,12 +123,12 @@ function PhotosAdmin() {
       theme: "light",
     });
 
-  const deletePhotoReport = async (e) => {
+  const deletePhoto = async (e) => {
     e.preventDefault();
     try {
-      await connexion.delete(`/photoreports/${photoReport.id}`);
-      setPhotoReport(photoReportModel);
-      getPhotoReports();
+      await connexion.delete(`/photos/${photo.id}`);
+      setPhoto(photoModel);
+      getPhotos();
       notifyDelete();
     } catch (error) {
       notifyWrong();
@@ -140,141 +136,108 @@ function PhotosAdmin() {
     }
   };
 
-  const getArtists = async () => {
+  const getPhotoReports = async () => {
     try {
-      const art = await connexion.get("/artists");
-      setArtists(art);
+      const pr = await connexion.get("/photoreports");
+      setPhotoReports(pr);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    getArtists();
     getPhotoReports();
+    getPhotos();
   }, []);
 
   return (
     <div className="flex flex-col w-full">
-      <h2 className="text-xl font-bold font-text p-4 pb-10">
-        administration des reportages photo
+      <h2 className="text-3xl font-bold font-text p-12 text-right">
+        administration des photos
       </h2>
-      <div className="flex pl-10">
-        <form
-          className="flex gap-20"
-          onSubmit={(event) => postPhotoReport(event)}
-        >
+      <div className="pl-10 font-title">
+        <form className="gap-20" onSubmit={(event) => postPhoto(event)}>
           <div className="w-5/12">
-            <div>
-              <label className="flex flex-col font-semibold pb-5">
-                Reportage photo à modifier ou supprimer :
-                <select
-                  onChange={(e) => refreshPhotoReport(e.target.value)}
-                  value=""
-                  className="border border-black h-7"
-                >
-                  <option value="">
-                    Sélectionnez le nom du reportage photo à modifier ou
-                    supprimer
+            <h1 className="font-bold pb-2">Photo à modifier ou supprimer :</h1>
+            <label className="flex flex-col font-semibold pb-5">
+              <select
+                onChange={(e) => refreshPhoto(e.target.value)}
+                value={photo.id}
+                className="border-0 h-7 bg-lightgrey shadow-md"
+              >
+                <option value="">photo</option>
+                {photos.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.alt}
                   </option>
-                  {photoReports.map((pr) => (
-                    <option key={pr.id} value={pr.id}>
-                      {pr.report_name}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <h1>Enregistrement d'un nouveau reportage</h1>
-              <label className="flex flex-col font-semibold">
-                Nom du reportage
-                <input
-                  className="border border-black h-7 placeholder:pl-2"
-                  type="text"
-                  required
-                  placeholder="Tapez ici le nom du reportage photo"
-                  minLength={5}
-                  maxLength={12}
-                  name="name"
-                  onChange={(event) =>
-                    handlePhotoReport(event.target.name, event.target.value)
-                  }
-                  value={photoReport.report_name}
-                />
-              </label>
-            </div>
-            <div className="pt-5">
+                ))}
+              </select>
+            </label>
+            <h1 className="font-bold pb-2">
+              Enregistrement d'une nouvelle photo :
+            </h1>
+            <label className="flex flex-col font-semibold pb-5">
+              nom du reportage
+              <select
+                className="border-0 h-7 bg-lightgrey shadow-md"
+                name="photo_report_name"
+                type="text"
+                onChange={(event) =>
+                  handlePhoto(event.target.name, +event.target.value)
+                }
+                value=""
+              >
+                <option value="">choisissez le reportage photo concerné</option>
+                {photoReports.map((pr) => (
+                  <option key={pr.id} value={pr.id}>
+                    {pr.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="w-5/12">
+            <div className="pt-3">
               <label className="flex flex-col font-semibold pb-5">
-                Date
+                fichier photo
                 <input
-                  className="border border-black h-7 placeholder:pl-2"
-                  type="text"
+                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
+                  type="file"
                   required
-                  placeholder="Date du reportage"
-                  minLength={5}
-                  maxLength={255}
-                  name="date"
+                  placeholder="fichier photo"
+                  accept="jpg, png, jpeg"
+                  name="src"
+                  ref={image}
                   onChange={(event) =>
-                    handlePhotoReport(event.target.name, event.target.value)
+                    handlePhoto(event.target.name, event.target.value)
                   }
-                  value={photoReport.report_date}
                 />
               </label>
-            </div>
-            <div>
-              <label className="flex flex-col font-semibold pb-5">
-                Description
-                <textarea
-                  className="border border-black placeholder:pl-2"
-                  required
-                  placeholder="Description"
-                  minLength={50}
-                  name="description"
-                  onChange={(event) =>
-                    handlePhotoReport(event.target.name, event.target.value)
-                  }
-                  value={photoReport.report_description}
+              {photo.src && (
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                    photo.src
+                  }`}
+                  alt={photo.alt}
                 />
-              </label>
+              )}
             </div>
             <div>
               <label className="flex flex-col font-semibold pb-5">
-                Lieu
+                texte alternatif de l'image
                 <input
-                  className="border border-black h-7 placeholder:pl-2"
+                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
                   type="text"
                   required
-                  placeholder="Lieu"
+                  placeholder=""
                   minLength={6}
                   maxLength={50}
                   name="lieu"
                   onChange={(event) =>
-                    handlePhotoReport(event.target.name, event.target.value)
+                    handlePhoto(event.target.name, event.target.value)
                   }
-                  value={photoReport.place}
+                  value={photo.place}
                 />
-              </label>
-            </div>
-            <div>
-              <label className="flex flex-col font-semibold pb-5">
-                Artiste
-                <select
-                  className="border border-black h-7 placeholder:pl-2"
-                  name="artist_id"
-                  type="text"
-                  onChange={(event) =>
-                    handlePhotoReport(event.target.name, +event.target.value)
-                  }
-                  value=""
-                >
-                  <option value="">
-                    Choisissez l'artiste à associer avec le reportage photo
-                  </option>
-                  {artists.map((art) => (
-                    <option key={art.id} value={art.id}>
-                      {art.name}
-                    </option>
-                  ))}
-                </select>
               </label>
             </div>
           </div>
@@ -292,31 +255,39 @@ function PhotosAdmin() {
               theme="light"
               className="font-text"
             />
-            <div className="flex justify-end pt-60 pb-5 pr-10 gap-10">
+          </div>
+          <div className="pt-6 pb-5 pr-10 gap-4">
+            {!photo.id && (
               <button
                 type="submit"
-                className="bg-black text-yellow font-bold py-2 px-4 font-text"
-                onClick={(e) => managePhotoReport(e)}
+                className="bg-black text-yellow font-bold py-2 px-4 font-text rounded shadow-md"
+                onClick={(e) => managePhoto(e)}
               >
                 Ajouter
               </button>
-              <button
-                type="button"
-                className="bg-black text-yellow font-bold py-2 px-4 font-text"
-                onClick={(e) => managePhotoReport(e)}
-              >
-                Mettre à jour
-              </button>
-              <button
-                type="button"
-                className="bg-black text-yellow font-bold py-2 px-4 font-text"
-                onClick={(e) => deletePhotoReport(e)}
-              >
-                Supprimer
-              </button>
-            </div>
+            )}
           </div>
         </form>
+        <div className="pt-6 pb-5 pr-10 flex gap-4">
+          {photo.id && (
+            <button
+              type="button"
+              className="bg-black text-yellow font-bold py-2 px-4 font-text rounded shadow-md"
+              onClick={(e) => managePhoto(e)}
+            >
+              Mettre à jour
+            </button>
+          )}
+          {photo.id && (
+            <button
+              type="button"
+              className="bg-yellow text-black font-bold py-2 px-4 font-text rounded shadow-md"
+              onClick={(e) => deletePhoto(e)}
+            >
+              Supprimer
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
