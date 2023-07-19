@@ -150,13 +150,12 @@ function ArtistsAdmin() {
             <label className="flex flex-col font-semibold pb-5">
               <select
                 onChange={(e) => refreshArtist(e.target.value)}
-                value={artist.id}
                 className="border-0 h-7 bg-lightgrey shadow-md"
               >
                 <option value="">artiste</option>
                 {artists.map((a) => (
                   <option key={a.id} value={a.id}>
-                    {a.alt}
+                    {a.artist_name}
                   </option>
                 ))}
               </select>

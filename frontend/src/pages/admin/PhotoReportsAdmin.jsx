@@ -155,51 +155,48 @@ function PhotoReportsAdmin() {
   }, []);
 
   return (
-    <div className="w-full bg-white">
+    <div className="flex flex-col w-full">
       <h2 className="text-3xl font-bold font-text p-12 text-right">
         administration des reportages photo
       </h2>
       <div className="pl-10 font-title">
         <form className="gap-20" onSubmit={(event) => postPhotoReport(event)}>
           <div className="w-5/12">
-            <div>
-              <h1 className="font-bold pb-2">
-                Reportage photo à modifier ou supprimer :
-              </h1>
-              <label className="flex flex-col font-semibold pb-5">
-                <select
-                  onChange={(e) => refreshPhotoReport(e.target.value)}
-                  value={photoReport.id}
-                  className="border-0 h-7 bg-lightgrey shadow-md"
-                >
-                  <option value="">reportage</option>
-                  {photoReports.map((pr) => (
-                    <option key={pr.id} value={pr.id}>
-                      {pr.report_name}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <h1 className="font-bold pb-2">
-                Enregistrement d'un nouveau reportage :
-              </h1>
-              <label className="flex flex-col font-semibold">
-                nom du reportage
-                <input
-                  className="border-0 h-7 bg-lightgrey shadow-md font-normal"
-                  type="text"
-                  required
-                  placeholder=""
-                  minLength={5}
-                  maxLength={12}
-                  name="name"
-                  onChange={(event) =>
-                    handlePhotoReport(event.target.name, event.target.value)
-                  }
-                  value={photoReport.report_name}
-                />
-              </label>
-            </div>
+            <h1 className="font-bold pb-2">
+              Reportage photo à modifier ou supprimer :
+            </h1>
+            <label className="flex flex-col font-semibold pb-5">
+              <select
+                onChange={(e) => refreshPhotoReport(e.target.value)}
+                className="border-0 h-7 bg-lightgrey shadow-md"
+              >
+                <option value="">reportage</option>
+                {photoReports.map((pr) => (
+                  <option key={pr.id} value={pr.id}>
+                    {pr.report_name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <h1 className="font-bold pb-2">
+              Enregistrement d'un nouveau reportage :
+            </h1>
+            <label className="flex flex-col font-semibold">
+              nom du reportage
+              <input
+                className="border-0 h-7 bg-lightgrey shadow-md font-normal"
+                type="text"
+                required
+                placeholder=""
+                minLength={5}
+                maxLength={50}
+                name="report_name"
+                onChange={(event) =>
+                  handlePhotoReport(event.target.name, event.target.value)
+                }
+                value={photoReport.report_name}
+              />
+            </label>
             <div className="pt-3">
               <label className="flex flex-col font-semibold">
                 date du reportage
@@ -210,7 +207,7 @@ function PhotoReportsAdmin() {
                   placeholder=""
                   minLength={5}
                   maxLength={255}
-                  name="date"
+                  name="report_date"
                   onChange={(event) =>
                     handlePhotoReport(event.target.name, event.target.value)
                   }
@@ -226,7 +223,7 @@ function PhotoReportsAdmin() {
                   required
                   placeholder=""
                   minLength={50}
-                  name="description"
+                  name="report_description"
                   onChange={(event) =>
                     handlePhotoReport(event.target.name, event.target.value)
                   }
@@ -244,7 +241,7 @@ function PhotoReportsAdmin() {
                   placeholder=""
                   minLength={6}
                   maxLength={50}
-                  name="lieu"
+                  name="place"
                   onChange={(event) =>
                     handlePhotoReport(event.target.name, event.target.value)
                   }
@@ -262,14 +259,13 @@ function PhotoReportsAdmin() {
                   onChange={(event) =>
                     handlePhotoReport(event.target.name, +event.target.value)
                   }
-                  value=""
                 >
                   <option value="">
                     choisissez l'artiste à associer au reportage photo
                   </option>
                   {artists.map((art) => (
                     <option key={art.id} value={art.id}>
-                      {art.name}
+                      {art.artist_name}
                     </option>
                   ))}
                 </select>
