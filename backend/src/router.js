@@ -26,6 +26,8 @@ router.get("/photos/:id", photoControllers.read);
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
+    console.log(req);
+    console.log(file);
     cb(null, "public/assets/images");
   },
   filename(req, file, cb) {

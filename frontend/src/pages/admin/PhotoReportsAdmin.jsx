@@ -154,9 +154,11 @@ function PhotoReportsAdmin() {
 
   return (
     <div className="flex flex-col w-full">
-      <h2 className="text-3xl font-bold font-text p-12 text-right">
-        administration des reportages photo
-      </h2>
+      <svg>
+        <text x="69%" y="50%" dy=".35em" textAnchor="middle">
+          administration des reportages photo
+        </text>
+      </svg>
       <div className="pl-10 font-title">
         <form className="gap-20" onSubmit={(event) => postPhotoReport(event)}>
           <div className="w-5/12">

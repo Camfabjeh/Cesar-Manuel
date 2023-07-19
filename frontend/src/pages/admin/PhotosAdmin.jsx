@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import connexion from "../../services/connexion";
 import "react-toastify/dist/ReactToastify.css";
+import "../../styles/admin.css";
 
 function PhotosAdmin() {
   const photoModel = {
     id: null,
     photo_report_id: "",
-    src: "",
     alt: "",
   };
 
@@ -53,7 +53,7 @@ function PhotosAdmin() {
     });
 
   const notifyAdd = () =>
-    toast("La photo a été correctement ajoutée à la base de données.", {
+    toast("📸 la photo a été correctement ajoutée à la base de données", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -77,7 +77,7 @@ function PhotosAdmin() {
     }
   };
   const notifyUpdate = () =>
-    toast("La photo a été correctement mise à jour.", {
+    toast("📷 la photo a été correctement mise à jour", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -151,10 +151,12 @@ function PhotosAdmin() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full">
-      <h2 className="text-3xl font-bold font-text p-12 text-right">
-        administration des photos
-      </h2>
+    <div className="flex flex-col w-full wrapper">
+      <svg>
+        <text x="75%" y="50%" dy=".35em" textAnchor="middle">
+          administration des photos
+        </text>
+      </svg>
       <div className="pl-10 font-title">
         <form className="gap-20" onSubmit={(event) => postPhoto(event)}>
           <div className="w-5/12">
