@@ -4,7 +4,7 @@ import AdminNavBar from "../components/AdminNavBar";
 
 function AdminLayout() {
   return (
-    <div>
+    <div className="flex">
       <AdminNavBar />
       <Outlet />
     </div>
