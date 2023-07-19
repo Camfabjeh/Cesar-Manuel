@@ -6,6 +6,7 @@ import UserLayout from "./layout/UserLayout";
 import HomePage from "./pages/HomePage";
 import PhotoReportsList from "./pages/PhotoReportsList";
 import PhotoReport from "./pages/PhotoReport";
+import About from "./pages/About";
 
 import AdminLayout from "./layout/AdminLayout";
 import Login from "./pages/admin/Login";
@@ -20,7 +21,8 @@ function App() {
         <Route path="" element={<HomePage />} />
         <Route path="/" element={<UserLayout />}>
           <Route path="/listereportages" element={<PhotoReportsList />} />
-          <Route path="/reportage/:id" element={<PhotoReport />} />
+          <Route path="/reportages/:id" element={<PhotoReport />} />
+          <Route path="/564" element={<About />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="" element={<Login />} />
