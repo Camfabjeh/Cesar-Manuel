@@ -1,11 +1,10 @@
-import PictureCard from "../components/PictureCard";
-import Footer from "../components/Footer";
+import React from "react";
+import GalleryImage from "../components/GalleryImage";
 
 function PhotoReportsList() {
   return (
-    <div>
-      <PictureCard />
-      <Footer />
+    <div className="bg-lightgrey">
+      <GalleryImage />
     </div>
   );
 }

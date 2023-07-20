@@ -8,6 +8,7 @@ module.exports = {
       lightgrey: "#EFEFEF",
       grey: "#D9D9D9",
       black: "#000000",
+      white: "#FFFFFF",
     },
     fontFamily: {
       title: ["Oxygen", "sans-serif"],

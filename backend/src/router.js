@@ -12,17 +12,8 @@ const router = express.Router();
 // router.delete("/items/:id", itemControllers.destroy);
 
 const artistControllers = require("./controllers/artistControllers");
-
-router.get("/artists", artistControllers.browse);
-router.get("/artists/:id", artistControllers.read);
-router.put("/artists/:id", artistControllers.edit);
-router.post("/artists", artistControllers.add);
-router.delete("/artists/:id", artistControllers.destroy);
-
 const photoControllers = require("./controllers/photoControllers");
-
-router.get("/photos", photoControllers.browse);
-router.get("/photos/:id", photoControllers.read);
+const photoreportControllers = require("./controllers/photoreportControllers");
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -41,6 +32,15 @@ const upload = multer({
   limits: { fileSize: "2MB" },
 });
 
+router.get("/artists", artistControllers.browse);
+router.get("/artists/:id", artistControllers.read);
+router.put("/artists/:id", artistControllers.edit);
+router.post("/artists", artistControllers.add);
+router.delete("/artists/:id", artistControllers.destroy);
+
+router.get("/photos", photoControllers.browse);
+router.get("/photos/:id", photoControllers.read);
+
 router.get("/photoreports/:id/photos", photoControllers.browseByPhotoReport);
 router.put("/photos/:id", upload.single("image"), photoControllers.edit);
 router.post("/photos", upload.single("image"), photoControllers.add);
@@ -48,11 +48,17 @@ router.delete("/photos/:id", upload.single("image"));
 router.post("/photos", photoControllers.add);
 router.delete("/photos/:id", photoControllers.destroy);
 
-const photoreportControllers = require("./controllers/photoreportControllers");
-
 router.get("/photoreports", photoreportControllers.browse);
-router.get("/photoreports/:id", photoreportControllers.read);
-router.put("/photoreports/:id", photoreportControllers.edit);
+router.get(
+  "/photoreports/:id",
+  upload.single("image"),
+  photoreportControllers.read
+);
+router.put(
+  "/photoreports/:id",
+  upload.single("image"),
+  photoreportControllers.edit
+);
 router.post("/photoreports", photoreportControllers.add);
 router.delete("/photoreports/:id", photoreportControllers.destroy);
 

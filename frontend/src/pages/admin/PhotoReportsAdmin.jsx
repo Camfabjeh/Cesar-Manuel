@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import connexion from "../../services/connexion";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,9 +12,18 @@ function PhotoReportsAdmin() {
     place: "",
     artist_id: "",
   };
+
+  const photoModel = {
+    id: null,
+    photo_report_id: "",
+    alt: "",
+  };
+
+  const [photo, setPhoto] = useState(photoModel);
   const [photoReport, setPhotoReport] = useState(photoReportModel);
   const [artists, setArtists] = useState([]);
   const [photoReports, setPhotoReports] = useState([]);
+  const image = useRef();
 
   const refreshPhotoReport = (id) => {
     if (id === "") {
@@ -38,6 +47,10 @@ function PhotoReportsAdmin() {
 
   const handlePhotoReport = (name, value) => {
     setPhotoReport({ ...photoReport, [name]: value });
+  };
+
+  const handlePhoto = (name, value) => {
+    setPhoto({ ...photo, [name]: value });
   };
 
   const notifyWrong = () =>
@@ -161,7 +174,7 @@ function PhotoReportsAdmin() {
       </svg>
       <div className="pl-10 font-title">
         <form className="gap-20" onSubmit={(event) => postPhotoReport(event)}>
-          <div className="w-5/12">
+          <div className="w-8/12">
             <h1 className="font-bold pb-2">
               Reportage photo à modifier ou supprimer :
             </h1>
@@ -197,7 +210,7 @@ function PhotoReportsAdmin() {
                 value={photoReport.report_name}
               />
             </label>
-            <div className="pt-3">
+            <div className="pt-4">
               <label className="flex flex-col font-semibold">
                 année du reportage
                 <input
@@ -215,7 +228,7 @@ function PhotoReportsAdmin() {
                 />
               </label>
             </div>
-            <div className="pt-3">
+            <div className="pt-4">
               <label className="flex flex-col font-semibold">
                 description
                 <textarea
@@ -231,8 +244,8 @@ function PhotoReportsAdmin() {
                 />
               </label>
             </div>
-            <div className="pt-3">
-              <label className="flex flex-col font-semibold">
+            <div className="pt-4">
+              <label className="flex flex-col font-semibold ">
                 lieu
                 <input
                   className="border-0 h-7 bg-lightgrey shadow-md font-normal"
@@ -249,30 +262,73 @@ function PhotoReportsAdmin() {
                 />
               </label>
             </div>
-            <div className="pt-3">
-              <label className="flex flex-col font-semibold pb-5">
-                artiste
-                <select
-                  className="border-0 h-7 bg-lightgrey shadow-md"
-                  name="artist_id"
-                  type="text"
-                  onChange={(event) =>
-                    handlePhotoReport(event.target.name, +event.target.value)
-                  }
-                >
-                  <option value="">
-                    choisissez l'artiste à associer au reportage photo
-                  </option>
-                  {artists.map((art) => (
-                    <option key={art.id} value={art.id}>
-                      {art.artist_name}
-                    </option>
-                  ))}
-                </select>
-              </label>
+            <div className="w-8/12">
+              <div className="pt-4">
+                <label className="flex flex-col font-semibold">
+                  fichier photo
+                  <input
+                    className="border-0 h-7 bg-lightgrey shadow-md font-normal form-control"
+                    type="file"
+                    required
+                    placeholder="fichier photo"
+                    accept="jpg, png, jpeg"
+                    name="src"
+                    ref={image}
+                    onChange={(event) =>
+                      handlePhoto(event.target.name, event.target.value)
+                    }
+                  />
+                </label>
+                {photo.id && (
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+                      photo.src
+                    }`}
+                    alt={photo.alt}
+                  />
+                )}
+              </div>
+              <div>
+                <label className="flex flex-col font-semibold pt-4">
+                  texte alternatif de l'image
+                  <input
+                    className="border-0 h-7 bg-lightgrey shadow-md font-normal"
+                    type="text"
+                    required
+                    placeholder=""
+                    minLength={6}
+                    maxLength={50}
+                    name="alt"
+                    onChange={(event) =>
+                      handlePhoto(event.target.name, event.target.value)
+                    }
+                    value={photo.alt}
+                  />
+                </label>
+              </div>
             </div>
+            <label className="flex flex-col font-semibold pt-4 pb-5">
+              artiste
+              <select
+                className="border-0 h-7 bg-lightgrey shadow-md"
+                name="artist_id"
+                type="text"
+                onChange={(event) =>
+                  handlePhotoReport(event.target.name, +event.target.value)
+                }
+              >
+                <option value="">
+                  choisissez l'artiste à associer au reportage photo
+                </option>
+                {artists.map((art) => (
+                  <option key={art.id} value={art.id}>
+                    {art.artist_name}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
-          <div className="w-5/12 font-text">
+          <div className="w-8/12 font-text">
             <ToastContainer
               position="bottom-right"
               autoClose={5000}

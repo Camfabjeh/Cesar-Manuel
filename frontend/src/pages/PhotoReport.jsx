@@ -5,7 +5,6 @@ import connexion from "../services/connexion";
 function PhotoReport() {
   const { id } = useParams();
   const [photoReport, setPhotoReport] = useState([]);
-  // const [photos, setPhotos] = useState([]);
 
   const getPhotoReport = async () => {
     try {
@@ -16,17 +15,7 @@ function PhotoReport() {
     }
   };
 
-  // const getPhotos = async () => {
-  //   try {
-  //     const photo = await connexion.get(`/photoreports/${id}/photos`);
-  //     setPhotoReport(photo);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   useEffect(() => {
-    // getPhotos();
     getPhotoReport();
   });
 
