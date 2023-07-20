@@ -22,12 +22,12 @@ function App() {
         <Route path="/" element={<UserLayout />}>
           <Route path="/listereportages" element={<PhotoReportsList />} />
           <Route path="/reportages/:id" element={<PhotoReport />} />
-          <Route path="/564" element={<About />} />
+          <Route path="" element={<Login />} />
+          <Route path="/apropos" element={<About />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
-          <Route path="" element={<Login />} />
           <Route path="/admin/reportages" element={<PhotoReportsAdmin />} />
-          <Route path="/admin/artistes" element={<ArtistsAdmin />} />
+          <Route path="/admin/" element={<ArtistsAdmin />} />
           <Route path="/admin/photos" element={<PhotosAdmin />} />
         </Route>
       </Routes>

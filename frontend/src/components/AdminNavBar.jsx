@@ -22,9 +22,9 @@ function NavBarAdmin() {
                   ? "text underline underline-offset-8 decoration-2 decoration-yellow"
                   : ""
               }
-              to="/admin/reportages"
+              to="/admin/"
             >
-              Reportages
+              Artistes
             </NavLink>
           </li>
           <li className="lg:mb-0 lg:pr-2">
@@ -34,9 +34,9 @@ function NavBarAdmin() {
                   ? "text underline underline-offset-8 decoration-2 decoration-yellow"
                   : ""
               }
-              to="/admin/artistes"
+              to="/admin/reportages"
             >
-              Artistes
+              Reportages
             </NavLink>
           </li>
           <li className="lg:mb-0 lg:pr-2">
