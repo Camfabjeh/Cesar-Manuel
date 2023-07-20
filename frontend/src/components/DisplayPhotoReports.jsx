@@ -26,13 +26,14 @@ function DisplayPhotoReports({ title }) {
         <div className="lg:mb-0 lg:pr-2">
           <Link to="/reportages">Reportages</Link>
         </div>
+
       </button>
       {open && (
         <>
           <Link to={title} />
           <div>
             {photoReportsList.map((prl) => (
-              <Link to={`/reportages/${prl.id}`}>
+              <Link to={`/photoreports/${prl.report_name}`}>
                 <div key={prl.id}>{prl.report_name}</div>
               </Link>
             ))}
