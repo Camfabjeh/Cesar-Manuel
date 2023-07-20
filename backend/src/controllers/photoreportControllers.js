@@ -48,7 +48,8 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const photoreport = req.body;
+  const photoreport = JSON.parse(req.body.json);
+  photoreport.src = req.file.filename;
 
   models.photoReport
     .insert(photoreport)
