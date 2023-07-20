@@ -41,7 +41,6 @@ const upload = multer({
   limits: { fileSize: "2MB" },
 });
 
-router.get("/photoreports/:id/photos", photoControllers.browseByPhotoReport);
 router.put("/photos/:id", upload.single("image"), photoControllers.edit);
 router.post("/photos", upload.single("image"), photoControllers.add);
 router.delete("/photos/:id", upload.single("image"));
