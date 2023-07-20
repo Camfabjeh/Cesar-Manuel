@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import connexion from "../services/connexion";
+import PictureCard from "../components/PictureCard";
+
 
 function PhotoReport() {
   const { id } = useParams();
   const [photoReport, setPhotoReport] = useState([]);
+  const [photos, setPhotos] = useState([]);
+
+  const getPhotos = async () => {
+    try {
+      const photo = await connexion.get(`/photoreports/${id}/photos`);
+      setPhotos(photo);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getPhotoReport = async () => {
     try {
@@ -15,6 +29,7 @@ function PhotoReport() {
 
   useEffect(() => {
     getPhotoReport();
+    getPhotos();
   });
 
   return (
@@ -33,6 +48,15 @@ function PhotoReport() {
         </p>
         <p />
       </div>
+      {photos.map((p) => (
+        <div key={p.id}>
+          <PictureCard
+            cls="max-h-[32rem] bg-gradient-to-t from-pink to-purple p-1"
+            src={p.src}
+            alt={p.alt}
+          />
+        </div>
+      ))}
     </div>
   );
 }
