@@ -23,7 +23,10 @@ function DisplayPhotoReports({ title }) {
   return (
     <div className={open ? "open" : null}>
       <button type="button" onClick={() => setOpen(!open)}>
-        <div className="lg:mb-0 lg:pr-2">Reportages</div>
+        <div className="lg:mb-0 lg:pr-2">
+          <Link to="/reportages">Reportages</Link>
+        </div>
+
       </button>
       {open && (
         <>

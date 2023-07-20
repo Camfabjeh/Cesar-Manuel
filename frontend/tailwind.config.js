@@ -7,6 +7,7 @@ module.exports = {
       yellow: "#D69F3A",
       lightgrey: "#EFEFEF",
       black: "#000000",
+      white: "#FFFFFF",
     },
     fontFamily: {
       title: ["Oxygen", "sans-serif"],
