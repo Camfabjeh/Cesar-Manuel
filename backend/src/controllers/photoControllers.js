@@ -31,7 +31,7 @@ const read = (req, res) => {
 const browseByPhotoReport = (req, res) => {
   models.photo
     .findAllByPhotoReport(req.params.id)
-    .then(([row]) => {
+    .then((row) => {
       res.status(200).json(row[0]);
     })
     .catch((err) => {
@@ -66,7 +66,7 @@ const add = (req, res) => {
   models.photo
     .insert(photo)
     .then(([result]) => {
-      res.location(`/photos/${result.insertId}`).sendStatus(201);
+      res.status(201).send(result);
     })
     .catch((err) => {
       console.error(err);

@@ -1,3 +1,4 @@
+-- SQLBook: Code
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS photo_report;
 DROP TABLE IF EXISTS artist;
