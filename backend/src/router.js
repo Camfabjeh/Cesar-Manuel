@@ -42,6 +42,7 @@ router.get("/photos", photoControllers.browse);
 router.get("/photos/:id", photoControllers.read);
 
 router.get("/photoreports/:id/photos", photoControllers.browseByPhotoReport);
+
 router.put("/photos/:id", upload.single("image"), photoControllers.edit);
 router.post("/photos", upload.single("image"), photoControllers.add);
 router.delete("/photos/:id", upload.single("image"));

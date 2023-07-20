@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import connexion from "../services/connexion";
+import React from "react";
 
 function PhotoReport() {
   const { id } = useParams();
