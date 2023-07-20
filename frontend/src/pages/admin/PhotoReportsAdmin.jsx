@@ -170,7 +170,7 @@ function PhotoReportsAdmin() {
                 onChange={(e) => refreshPhotoReport(e.target.value)}
                 className="border-0 h-7 bg-lightgrey shadow-md"
               >
-                <option value="">reportage</option>
+                <option value="">aucun reportage sélectionné</option>
                 {photoReports.map((pr) => (
                   <option key={pr.id} value={pr.id}>
                     {pr.report_name}

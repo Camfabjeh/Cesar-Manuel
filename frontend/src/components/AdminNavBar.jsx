@@ -8,7 +8,7 @@ function NavBarAdmin() {
     <nav className="flex-wrap relative flex w-full items-center justify-between bg-black shadow-2xl 0px 7px 11px 0px rgba(0, 0, 0, 1)">
       <div className="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto">
         <ul className="list-style-none gap-5 flex flex-col pl-0 lg:flex-row mr-auto p-2 font-text font-semibold text-white items-center">
-          <div className="flex" />
+          <div className="flex gap-5" />
           <NavLink to="/">
             <img
               src={BACKOFFICELOGO}

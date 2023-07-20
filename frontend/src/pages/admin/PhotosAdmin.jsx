@@ -167,7 +167,7 @@ function PhotosAdmin() {
                 value={photo.id}
                 className="border-0 h-7 bg-lightgrey shadow-md"
               >
-                <option value="">photo</option>
+                <option value="">aucune photo sélectionnée</option>
                 {photos.map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.src}
@@ -182,17 +182,15 @@ function PhotosAdmin() {
               nom du reportage
               <select
                 className="border-0 h-7 bg-lightgrey shadow-md"
-                name="photo_report_name"
+                name="photo_report_id"
                 type="text"
-                required
                 onChange={(event) =>
-                  handlePhoto(event.target.name, +event.target.value)
+                  handlePhoto(event.target.name, event.target.value)
                 }
-                value=""
               >
                 <option value="">choisissez le reportage photo concerné</option>
                 {photoReports.map((pr) => (
-                  <option key={pr.id} value={pr.report_name}>
+                  <option key={pr.id} value={pr.id}>
                     {pr.report_name}
                   </option>
                 ))}
@@ -216,7 +214,7 @@ function PhotosAdmin() {
                   }
                 />
               </label>
-              {photo.src && (
+              {photo.id && (
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
                     photo.src
@@ -235,11 +233,11 @@ function PhotosAdmin() {
                   placeholder=""
                   minLength={6}
                   maxLength={50}
-                  name="texte alternatif"
+                  name="alt"
                   onChange={(event) =>
                     handlePhoto(event.target.name, event.target.value)
                   }
-                  value={photo.place}
+                  value={photo.alt}
                 />
               </label>
             </div>

@@ -154,7 +154,7 @@ function ArtistsAdmin() {
                 onChange={(e) => refreshArtist(e.target.value)}
                 className="border-0 h-7 bg-lightgrey shadow-md"
               >
-                <option value="">artiste</option>
+                <option value="">aucun·e artiste sélectionné·e</option>
                 {artists.map((a) => (
                   <option key={a.id} value={a.id}>
                     {a.artist_name}
