@@ -5,6 +5,23 @@ class PhotoManager extends AbstractManager {
     super({ table: "photo" });
   }
 
+  find(id) {
+    return this.database.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
+  }
+
+  findAll() {
+    return this.database.query(`select * from  ${this.table}`);
+  }
+
+  findAllByPhotoReport(id) {
+    return this.database.query(
+      `select * from ${this.table} WHERE photo_report_id = ?`,
+      [id]
+    );
+  }
+
   insert(photo) {
     return this.database.query(
       `insert into ${this.table} (photo_report_id, src, alt) values (?, ?, ?)`,
