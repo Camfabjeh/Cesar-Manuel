@@ -26,8 +26,6 @@ router.get("/photos/:id", photoControllers.read);
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    console.log(req);
-    console.log(file);
     cb(null, "public/assets/images");
   },
   filename(req, file, cb) {
@@ -44,8 +42,8 @@ const upload = multer({
 });
 
 router.put("/photos/:id", upload.single("image"), photoControllers.edit);
-router.post("/works", upload.single("image"), photoControllers.add);
-router.delete("/works/:id", upload.single("image"));
+router.post("/photos", upload.single("image"), photoControllers.add);
+router.delete("/photos/:id", upload.single("image"));
 router.post("/photos", photoControllers.add);
 router.delete("/photos/:id", photoControllers.destroy);
 

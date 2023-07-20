@@ -29,7 +29,8 @@ const read = (req, res) => {
 };
 
 const edit = (req, res) => {
-  const photo = req.body;
+  const photo = JSON.parse(req.body.json);
+  photo.src = req.file.filename;
   photo.id = parseInt(req.params.id, 10);
 
   models.photo
@@ -48,8 +49,8 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const photo = req.body;
-
+  const photo = JSON.parse(req.body.json);
+  photo.src = req.file.filename;
   models.photo
     .insert(photo)
     .then(([result]) => {
