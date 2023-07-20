@@ -5,15 +5,6 @@ class PhotoReportManager extends AbstractManager {
     super({ table: "photo_report" });
   }
 
-  find(id) {
-    return this.database.query(
-      `select pr.report_name, pr.report_date, pr.report_description, pr.place, a.artist_name as artist, a.website as website from ${this.table} as pr 
-      inner join artist as a on a.id = pr.artist_id
-      where pr.id = ?`,
-      [id]
-    );
-  }
-
   insert(photoReport) {
     return this.database.query(
       `insert into ${this.table} (report_name, report_date, report_description, place, artist_id) values (?, ?, ?, ?, ?)`,

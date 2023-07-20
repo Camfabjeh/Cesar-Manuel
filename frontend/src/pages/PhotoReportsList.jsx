@@ -1,3 +1,4 @@
+import React from "react";
 import PictureCard from "../components/PictureCard";
 import Footer from "../components/Footer";
 

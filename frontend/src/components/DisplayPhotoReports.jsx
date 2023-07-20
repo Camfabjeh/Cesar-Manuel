@@ -23,16 +23,14 @@ function DisplayPhotoReports({ title }) {
   return (
     <div className={open ? "open" : null}>
       <button type="button" onClick={() => setOpen(!open)}>
-        <div className="lg:mb-0 lg:pr-2">
-          <Link to="/listereportages">Reportages</Link>
-        </div>
+        <div className="lg:mb-0 lg:pr-2">Reportages</div>
       </button>
       {open && (
         <>
           <Link to={title} />
           <div>
             {photoReportsList.map((prl) => (
-              <Link to={`/reportages/${prl.id}`}>
+              <Link to={`/photoreports/${prl.report_name}`}>
                 <div key={prl.id}>{prl.report_name}</div>
               </Link>
             ))}

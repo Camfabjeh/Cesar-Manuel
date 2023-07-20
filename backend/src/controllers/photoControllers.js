@@ -28,18 +28,6 @@ const read = (req, res) => {
     });
 };
 
-const browseByPhotoReport = (req, res) => {
-  models.photo
-    .findAllByPhotoReport(req.params.id)
-    .then(([row]) => {
-      res.status(200).json(row[0]);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
 const edit = (req, res) => {
   const photo = JSON.parse(req.body.json);
   photo.src = req.file.filename;
@@ -93,7 +81,6 @@ const destroy = (req, res) => {
 module.exports = {
   browse,
   read,
-  browseByPhotoReport,
   edit,
   add,
   destroy,
