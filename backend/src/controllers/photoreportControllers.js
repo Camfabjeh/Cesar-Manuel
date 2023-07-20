@@ -4,7 +4,7 @@ const browse = (req, res) => {
   models.photoReport
     .findAll()
     .then(([rows]) => {
-      res.status(200).json(rows);
+      res.send(rows);
     })
     .catch((err) => {
       console.error(err);
@@ -19,7 +19,7 @@ const read = (req, res) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.status(200).json(rows[0]);
+        res.send(rows[0]);
       }
     })
     .catch((err) => {
@@ -48,7 +48,8 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const photoreport = req.body;
+  const photoreport = JSON.parse(req.body.json);
+  photoreport.src = req.file.filename;
 
   models.photoReport
     .insert(photoreport)

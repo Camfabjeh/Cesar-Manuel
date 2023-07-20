@@ -118,6 +118,7 @@ function PhotoReportsAdmin() {
   const managePhotoReport = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("image", image.current.files[0]);
     formData.append("json", JSON.stringify(photoReport));
     if (photoReport.id) {
       updatePhotoReport(formData);
