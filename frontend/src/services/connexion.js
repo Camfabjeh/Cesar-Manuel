@@ -32,7 +32,6 @@ const postFile = (url, form) => {
   return fetch(`${import.meta.env.VITE_BACKEND_URL}${url}`, {
     body: form,
     method: "POST",
-    credentials: "include",
   })
     .then((res) => res.json())
     .catch((err) => console.error(err));
@@ -42,7 +41,6 @@ const putFile = (url, form) => {
   return fetch(`${import.meta.env.VITE_BACKEND_URL}${url}`, {
     body: form,
     method: "PUT",
-    credentials: "include",
   })
     .then((res) => res)
     .catch((err) => console.error(err));

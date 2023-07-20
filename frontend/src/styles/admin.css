@@ -1,0 +1,25 @@
+svg {
+	font-family: "Lekton", sans-serif;
+	width: 100%; height: 100%;
+}
+
+svg text {
+	animation: stroke 10s infinite alternate;
+	stroke-width: 2;
+	stroke: #000000;
+	font-size: 2rem;
+}
+	@keyframes stroke {
+		0%   {
+			fill: rgba(88,148,191,0); stroke: rgba(0,0,0,1);
+			stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+		}
+		70%  {fill: rgba(88,148,191,0); stroke: rgba(0,0,0,1); }
+		80%  {fill: rgba(88,148,191,0); stroke: rgba(0,0,0,1); stroke-width: 3; }
+		100% {
+			fill: rgba(88,148,191,1); stroke: rgba(0,0,0,0);
+			stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+		}
+	}
+	
+	.wrapper {background-color: #FFFFFF};

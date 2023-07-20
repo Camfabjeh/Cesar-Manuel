@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import connexion from "../../services/connexion";
 import "react-toastify/dist/ReactToastify.css";
+import "../../styles/admin.css";
 
 function PhotosAdmin() {
   const photoModel = {
     id: null,
     photo_report_id: "",
-    src: "",
     alt: "",
   };
 
@@ -53,7 +53,7 @@ function PhotosAdmin() {
     });
 
   const notifyAdd = () =>
-    toast("La photo a été correctement ajoutée à la base de données.", {
+    toast("📸 la photo a été correctement ajoutée à la base de données", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -77,7 +77,7 @@ function PhotosAdmin() {
     }
   };
   const notifyUpdate = () =>
-    toast("La photo a été correctement mise à jour.", {
+    toast("📷 la photo a été correctement mise à jour", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -151,10 +151,12 @@ function PhotosAdmin() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full">
-      <h2 className="text-3xl font-bold font-text p-12 text-right">
-        administration des photos
-      </h2>
+    <div className="flex flex-col w-full wrapper">
+      <svg>
+        <text x="75%" y="50%" dy=".35em" textAnchor="middle">
+          administration des photos
+        </text>
+      </svg>
       <div className="pl-10 font-title">
         <form className="gap-20" onSubmit={(event) => postPhoto(event)}>
           <div className="w-5/12">
@@ -165,7 +167,7 @@ function PhotosAdmin() {
                 value={photo.id}
                 className="border-0 h-7 bg-lightgrey shadow-md"
               >
-                <option value="">photo</option>
+                <option value="">aucune photo sélectionnée</option>
                 {photos.map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.src}
@@ -180,17 +182,15 @@ function PhotosAdmin() {
               nom du reportage
               <select
                 className="border-0 h-7 bg-lightgrey shadow-md"
-                name="photo_report_name"
+                name="photo_report_id"
                 type="text"
-                required
                 onChange={(event) =>
-                  handlePhoto(event.target.name, +event.target.value)
+                  handlePhoto(event.target.name, event.target.value)
                 }
-                value=""
               >
                 <option value="">choisissez le reportage photo concerné</option>
                 {photoReports.map((pr) => (
-                  <option key={pr.id} value={pr.report_name}>
+                  <option key={pr.id} value={pr.id}>
                     {pr.report_name}
                   </option>
                 ))}
@@ -214,7 +214,7 @@ function PhotosAdmin() {
                   }
                 />
               </label>
-              {photo.src && (
+              {photo.id && (
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
                     photo.src
@@ -233,11 +233,11 @@ function PhotosAdmin() {
                   placeholder=""
                   minLength={6}
                   maxLength={50}
-                  name="texte alternatif"
+                  name="alt"
                   onChange={(event) =>
                     handlePhoto(event.target.name, event.target.value)
                   }
-                  value={photo.place}
+                  value={photo.alt}
                 />
               </label>
             </div>

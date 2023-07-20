@@ -138,9 +138,11 @@ function ArtistsAdmin() {
 
   return (
     <div className="flex flex-col w-full">
-      <h2 className="text-3xl font-bold font-text p-12 text-right">
-        administration des artistes
-      </h2>
+      <svg>
+        <text x="75%" y="50%" dy=".35em" textAnchor="middle">
+          administration des artistes
+        </text>
+      </svg>
       <div className="pl-10 font-title">
         <form className="gap-20" onSubmit={(event) => postArtist(event)}>
           <div className="w-5/12">
@@ -152,7 +154,7 @@ function ArtistsAdmin() {
                 onChange={(e) => refreshArtist(e.target.value)}
                 className="border-0 h-7 bg-lightgrey shadow-md"
               >
-                <option value="">artiste</option>
+                <option value="">aucun·e artiste sélectionné·e</option>
                 {artists.map((a) => (
                   <option key={a.id} value={a.id}>
                     {a.artist_name}

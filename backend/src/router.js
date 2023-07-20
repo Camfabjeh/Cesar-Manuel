@@ -42,8 +42,8 @@ const upload = multer({
 });
 
 router.put("/photos/:id", upload.single("image"), photoControllers.edit);
-router.post("/works", upload.single("image"), photoControllers.add);
-router.delete("/works/:id", upload.single("image"));
+router.post("/photos", upload.single("image"), photoControllers.add);
+router.delete("/photos/:id", upload.single("image"));
 router.post("/photos", photoControllers.add);
 router.delete("/photos/:id", photoControllers.destroy);
 
