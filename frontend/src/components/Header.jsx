@@ -1,4 +1,3 @@
-import React from "react";
 import BANNIERE_PAGES from "../assets/front/BANNIERE_PAGES.png";
 
 function Header() {
