@@ -1,3 +1,4 @@
+-- SQLBook: Code
 -- Active: 1684935220439@@127.0.0.1@3306@checkpoint4
 -- SQLBook: Code
 DROP TABLE IF EXISTS photo;

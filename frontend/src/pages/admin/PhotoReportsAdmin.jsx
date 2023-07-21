@@ -9,6 +9,8 @@ function PhotoReportsAdmin() {
     report_name: "",
     report_date: "",
     report_description: "",
+    photo_preview: "",
+    photo_preview_alt: "",
     place: "",
     artist_id: "",
   };
@@ -39,6 +41,7 @@ function PhotoReportsAdmin() {
   };
 
   const handlePhotoReport = (name, value) => {
+    console.warn(photoReport);
     setPhotoReport({ ...photoReport, [name]: value });
   };
 
@@ -264,7 +267,10 @@ function PhotoReportsAdmin() {
                     name="photo_preview"
                     ref={image}
                     onChange={(event) =>
-                      handlePhotoReport(event.target.name, event.target.value)
+                      handlePhotoReport(
+                        event.target.name,
+                        event.target.files[0].name
+                      )
                     }
                   />
                 </label>
@@ -287,7 +293,7 @@ function PhotoReportsAdmin() {
                     placeholder=""
                     minLength={6}
                     maxLength={50}
-                    name="alt"
+                    name="photo_preview_alt"
                     onChange={(event) =>
                       handlePhotoReport(event.target.name, event.target.value)
                     }
@@ -303,12 +309,11 @@ function PhotoReportsAdmin() {
                 name="artist_id"
                 type="text"
                 onChange={(event) =>
-                  handlePhotoReport(event.target.name, +event.target.value)
+                  handlePhotoReport(event.target.name, event.target.value)
                 }
+                value={photoReport.artist_id}
               >
-                <option value="">
-                  choisissez l'artiste à associer au reportage photo
-                </option>
+                <option>...</option>
                 {artists.map((art) => (
                   <option key={art.id} value={art.id}>
                     {art.artist_name}
