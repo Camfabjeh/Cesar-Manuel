@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import connexion from "../services/connexion";
+import PhotoReportImage from "../components/PhotoReportImage";
 
 function PhotoReport() {
   const { id } = useParams();
@@ -35,6 +36,7 @@ function PhotoReport() {
         </p>
         <p />
       </div>
+      <PhotoReportImage />
     </div>
   );
 }
