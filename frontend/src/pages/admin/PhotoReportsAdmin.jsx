@@ -13,13 +13,6 @@ function PhotoReportsAdmin() {
     artist_id: "",
   };
 
-  const photoModel = {
-    id: null,
-    photo_report_id: "",
-    alt: "",
-  };
-
-  const [photo, setPhoto] = useState(photoModel);
   const [photoReport, setPhotoReport] = useState(photoReportModel);
   const [artists, setArtists] = useState([]);
   const [photoReports, setPhotoReports] = useState([]);
@@ -47,10 +40,6 @@ function PhotoReportsAdmin() {
 
   const handlePhotoReport = (name, value) => {
     setPhotoReport({ ...photoReport, [name]: value });
-  };
-
-  const handlePhoto = (name, value) => {
-    setPhoto({ ...photo, [name]: value });
   };
 
   const notifyWrong = () =>
@@ -272,19 +261,19 @@ function PhotoReportsAdmin() {
                     required
                     placeholder="fichier photo"
                     accept="jpg, png, jpeg"
-                    name="src"
+                    name="photo_preview"
                     ref={image}
                     onChange={(event) =>
-                      handlePhoto(event.target.name, event.target.value)
+                      handlePhotoReport(event.target.name, event.target.value)
                     }
                   />
                 </label>
-                {photo.id && (
+                {photoReport.id && (
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
-                      photo.src
+                      photoReport.photo_preview
                     }`}
-                    alt={photo.alt}
+                    alt={photoReport.photo_preview_alt}
                   />
                 )}
               </div>
@@ -300,9 +289,9 @@ function PhotoReportsAdmin() {
                     maxLength={50}
                     name="alt"
                     onChange={(event) =>
-                      handlePhoto(event.target.name, event.target.value)
+                      handlePhotoReport(event.target.name, event.target.value)
                     }
-                    value={photo.alt}
+                    value={photoReport.photo_preview_alt}
                   />
                 </label>
               </div>
