@@ -17,7 +17,7 @@ function PhotoReport() {
 
   useEffect(() => {
     getPhotoReport();
-  });
+  }, []);
 
   return (
     <div className="bg-lightgrey h-full">
