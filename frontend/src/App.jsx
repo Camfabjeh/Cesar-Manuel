@@ -13,12 +13,14 @@ import Login from "./pages/admin/Login";
 import PhotoReportsAdmin from "./pages/admin/PhotoReportsAdmin";
 import ArtistsAdmin from "./pages/admin/ArtistsAdmin";
 import PhotosAdmin from "./pages/admin/PhotosAdmin";
+import Nowhere from "./pages/Nowhere";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="" element={<HomePage />} />
+        <Route path="*" element={<Nowhere />} />
         <Route path="/" element={<UserLayout />}>
           <Route path="/reportages" element={<PhotoReportsList />} />
           <Route path="/reportages/:id" element={<PhotoReport />} />
