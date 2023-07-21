@@ -1,3 +1,4 @@
+-- Active: 1684935220439@@127.0.0.1@3306@checkpoint4
 -- SQLBook: Code
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS photo_report;
@@ -37,7 +38,7 @@ CREATE TABLE photo (
 );
 
 INSERT INTO artist (artist_name, website)
-VALUES ("Caroline Guillot", "https://www.ateliershibumi.com/"), ("Mathilde Fabry", "https://www.ma-cantine-buissonniere.com/");
+VALUES ("Caroline Guillot", "https://www.ateliershibumi.com/"), ("Mathilde Fabry", "https://www.ma-cantine-buissonniere.com/"), ("l'Outil en Main", "https://loutilenmain-nantes.myassoc.org/"), ("Christian Fabry", "pas de site web"), ("Liane Santucci", "pas de site web");
 
 INSERT INTO photo_report (
   report_name,
@@ -64,7 +65,31 @@ VALUES (
   "Lorem Ipsum",
   "Chemellier", 
   2
-);
+), (
+  "Christian Fabry", 
+  "2020", 
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 
+  "CF(1).jpg",
+  "Lorem Ipsum",
+  "Beaulieu sur Layon", 
+  4
+), (
+  "l'Outil en Main", 
+  "2023", 
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 
+  "OEM(1).jpg",
+  "Lorem Ipsum",
+  "Barbechat", 
+  3
+), (
+  "Liane Santucci", 
+  "2022", 
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 
+  "LS(1).jpg",
+  "Lorem Ipsum",
+  "Nantes", 
+  5
+) ;
 
 INSERT INTO photo (
   photo_report_id,
@@ -79,4 +104,124 @@ VALUES (
   2,
   "MCB.jpg",
   "Lorem ipsum"
-)
+), (
+  1,
+  "AS(1).jpg",
+  "Lorem ipsum"
+), (
+  1,
+  "AS(2).jpg",
+  "Lorem ipsum"
+), (
+  1,
+  "AS(3).jpg",
+  "Lorem ipsum"
+), (
+  1,
+  "AS(4).jpg",
+  "Lorem ipsum"
+), (
+  1,
+  "AS(5).jpg",
+  "Lorem ipsum"
+), (
+  1,
+  "AS(6).jpg",
+  "Lorem ipsum"
+), (
+  2,
+  "MCB(1).jpg",
+  "Lorem ipsum"
+), (
+  2,
+  "MCB(2).jpg",
+  "Lorem ipsum"
+), (
+  2,
+  "MCB(3).jpg",
+  "Lorem ipsum"
+), (
+  2,
+  "MCB(4).jpg",
+  "Lorem ipsum"
+), (
+  2,
+  "MCB(5).jpg",
+  "Lorem ipsum"
+), (
+  2,
+  "MCB(6).jpg",
+  "Lorem ipsum"
+), (
+  3,
+  "OEM(1).jpg",
+  "Lorem ipsum"
+), (
+  3,
+  "OEM(2).jpg",
+  "Lorem ipsum"
+), (
+  3,
+  "OEM(3).jpg",
+  "Lorem ipsum"
+), (
+  3,
+  "OEM(4).jpg",
+  "Lorem ipsum"
+), (
+  3,
+  "OEM(5).jpg",
+  "Lorem ipsum"
+), (
+  3,
+  "OEM(6).jpg",
+  "Lorem ipsum"
+), (
+  4,
+  "CF(1).jpg",
+  "Lorem ipsum"
+), (
+  4,
+  "CF(2).jpg",
+  "Lorem ipsum"
+), (
+  4,
+  "CF(3).jpg",
+  "Lorem ipsum"
+), (
+  4,
+  "CF(4).jpg",
+  "Lorem ipsum"
+), (
+  4,
+  "CF(5).jpg",
+  "Lorem ipsum"
+), (
+  4,
+  "CF(6).jpg",
+  "Lorem ipsum"
+), (
+  5,
+  "LS(1).jpg",
+  "Lorem ipsum"
+), (
+  5,
+  "LS(2).jpg",
+  "Lorem ipsum"
+), (
+  5,
+  "LS(3).jpg",
+  "Lorem ipsum"
+), (
+  5,
+  "LS(4).jpg",
+  "Lorem ipsum"
+), (
+  5,
+  "LS(5).jpg",
+  "Lorem ipsum"
+), (
+  5,
+  "LS(6).jpg",
+  "Lorem ipsum"
+);
