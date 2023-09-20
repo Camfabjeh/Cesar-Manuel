@@ -38,6 +38,9 @@ CREATE TABLE photo (
   CONSTRAINT photo_report_id_fk FOREIGN KEY (photo_report_id) REFERENCES photo_report(id)
 );
 
+INSERT INTO user (login, password)
+VALUES ("cesarmanuel@gmail.com", "motdepasse")
+
 INSERT INTO artist (artist_name, website)
 VALUES ("Caroline Guillot", "https://www.ateliershibumi.com/"), ("Mathilde Fabry", "https://www.ma-cantine-buissonniere.com/"), ("l'Outil en Main", "https://loutilenmain-nantes.myassoc.org/"), ("Christian Fabry", "pas de site web"), ("Liane Santucci", "pas de site web");
 
