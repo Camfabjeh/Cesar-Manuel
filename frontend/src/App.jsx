@@ -21,13 +21,14 @@ function App() {
       <Routes>
         <Route path="" element={<HomePage />} />
         <Route path="*" element={<Nowhere />} />
+
         <Route path="/" element={<UserLayout />}>
           <Route path="/reportages" element={<PhotoReportsList />} />
           <Route path="/reportages/:id" element={<PhotoReport />} />
-          <Route path="" element={<Auth />} />
           <Route path="/apropos" element={<About />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin/auth" element={<Auth />} />
           <Route path="/admin/reportages" element={<PhotoReportsAdmin />} />
           <Route path="/admin/" element={<ArtistsAdmin />} />
           <Route path="/admin/photos" element={<PhotosAdmin />} />
