@@ -9,7 +9,7 @@ import PhotoReport from "./pages/PhotoReport";
 import About from "./pages/About";
 
 import AdminLayout from "./layout/AdminLayout";
-import Login from "./pages/admin/Login";
+import Auth from "./pages/admin/Auth";
 import PhotoReportsAdmin from "./pages/admin/PhotoReportsAdmin";
 import ArtistsAdmin from "./pages/admin/ArtistsAdmin";
 import PhotosAdmin from "./pages/admin/PhotosAdmin";
@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<UserLayout />}>
           <Route path="/reportages" element={<PhotoReportsList />} />
           <Route path="/reportages/:id" element={<PhotoReport />} />
-          <Route path="" element={<Login />} />
+          <Route path="" element={<Auth />} />
           <Route path="/apropos" element={<About />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
