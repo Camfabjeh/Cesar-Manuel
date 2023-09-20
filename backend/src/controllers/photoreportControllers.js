@@ -29,7 +29,8 @@ const read = (req, res) => {
 };
 
 const edit = (req, res) => {
-  const photoreport = req.body;
+  const photoreport = JSON.parse(req.body.json);
+  photoreport.photo_preview = req.file.filename;
   photoreport.id = parseInt(req.params.id, 10);
 
   models.photoReport

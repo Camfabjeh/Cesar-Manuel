@@ -1,6 +1,4 @@
 -- SQLBook: Code
--- Active: 1684935220439@@127.0.0.1@3306@checkpoint4
--- SQLBook: Code
 DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS photo_report;
 DROP TABLE IF EXISTS artist;
@@ -226,3 +224,5 @@ VALUES (
   "LS(6).jpg",
   "Lorem ipsum"
 );
+-- SQLBook: Code
+-- Active: 1684935220439@@127.0.0.1@3306@checkpoint4
